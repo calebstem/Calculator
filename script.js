@@ -28,7 +28,7 @@ function operate(operator, a, b){
 }
 
 let displayVal = '';
-let firstNum;
+let firstNum = '';
 let secondNum = '';
 let operatorInput = '';
 let operatorPressed = false;
@@ -42,7 +42,10 @@ function displayResults(i){
 }
 
 function inputOperator(operator){
-    firstNum = displayVal;
+    if (!operatorPressed){
+        firstNum = displayVal;
+        secondNum = '';
+    }
     if (operator == 'plus' && operatorPressed == false){
         displayResults('+');
         operatorInput = '+';
@@ -63,8 +66,30 @@ function inputOperator(operator){
 }
 
 function equals(operatorInput, firstNum, secondNum){
-    let result = operate(`${operatorInput}`, Number(firstNum), Number(secondNum));
-    document.getElementById('result').textContent = result;
+    if (operatorInput == '/' && secondNum == '0'){
+        document.getElementById('result').textContent = 'Help';
+        displayVal = '';
+        firstNum = '';
+        secondNum = '';
+        operatorInput = '';
+        operatorPressed = false;
+    } else if (secondNum !== ''){
+    result = operate(`${operatorInput}`, Number(firstNum), Number(secondNum));
+    operatorPressed = false;
+    displayVal = Math.round(result * 10000000) / 10000000;
+    firstNum = displayVal;
+    secondNum = '';
+    document.getElementById('result').textContent = displayVal;
+    }
+}
+
+function clear(){
+     displayVal = '';
+     firstNum = '';
+     secondNum = '';
+     operatorInput = '';
+     operatorPressed = false;
+     document.getElementById('result').textContent = displayVal
 }
 
 document.getElementById('plus').addEventListener('click', function(){inputOperator('plus')});
@@ -72,6 +97,8 @@ document.getElementById('minus').addEventListener('click', function(){inputOpera
 document.getElementById('times').addEventListener('click', function(){inputOperator('times')});
 document.getElementById('divide').addEventListener('click', function(){inputOperator('divide')});
 document.getElementById('equals').addEventListener('click', function(){equals(operatorInput, firstNum, secondNum)});
+document.getElementById('clear').addEventListener('click', function(){clear()});
+
 
 
 
