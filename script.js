@@ -29,35 +29,50 @@ function operate(operator, a, b){
 
 let displayVal = '';
 let firstNum;
-let operatorInput;
+let secondNum = '';
+let operatorInput = '';
+let operatorPressed = false;
 
 function displayResults(i){
     displayVal += i;
+    if (operatorPressed){
+        secondNum += i;
+    }
     document.getElementById('result').textContent = displayVal;
 }
 
 function inputOperator(operator){
-    operatorInput = operator;
     firstNum = displayVal;
-    if (operator = 'plus'){
-        displayVal += '+';
-        document.getElementById('result').textContent = displayVal;
-    } else if (operator = 'minus'){
-        displayVal += '-';
-        document.getElementById('result').textContent = displayVal;
-    } else if (operator = 'times'){
-        displayVal += '*';
-        document.getElementById('result').textContent = displayVal;
-    } else if (operator = 'divide'){
-        displayVal += '/';
-        document.getElementById('result').textContent = displayVal;
+    if (operator == 'plus' && operatorPressed == false){
+        displayResults('+');
+        operatorInput = '+';
+        operatorPressed = true;
+    } else if (operator == 'minus' && operatorPressed == false){
+        displayResults('-');
+        operatorInput = '-';
+        operatorPressed = true;
+    } else if (operator == 'times' && operatorPressed == false){
+        displayResults('*');
+        operatorInput = '*';
+        operatorPressed = true;
+    } else if (operator == 'divide' && operatorPressed == false){
+        displayResults('/');
+        operatorInput = '/';
+        operatorPressed = true;
     }
 }
 
-document.getElementById('plus').addEventListener('click', inputOperator(plus));
-document.getElementById('minus').addEventListener('click', inputOperator(minus));
-document.getElementById('times').addEventListener('click', inputOperator(times));
-document.getElementById('times').addEventListener('click', inputOperator(times));
+function equals(operatorInput, firstNum, secondNum){
+    let result = operate(`${operatorInput}`, Number(firstNum), Number(secondNum));
+    document.getElementById('result').textContent = result;
+}
+
+document.getElementById('plus').addEventListener('click', function(){inputOperator('plus')});
+document.getElementById('minus').addEventListener('click', function(){inputOperator('minus')});
+document.getElementById('times').addEventListener('click', function(){inputOperator('times')});
+document.getElementById('divide').addEventListener('click', function(){inputOperator('divide')});
+document.getElementById('equals').addEventListener('click', function(){equals(operatorInput, firstNum, secondNum)});
+
 
 
 
