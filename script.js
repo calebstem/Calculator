@@ -99,11 +99,6 @@ document.getElementById('divide').addEventListener('click', function(){inputOper
 document.getElementById('equals').addEventListener('click', function(){equals(operatorInput, firstNum, secondNum)});
 document.getElementById('clear').addEventListener('click', function(){clear()});
 
-
-
-
-
-
 const toAdd = document.createDocumentFragment()
 for (let i = 0; i<=9; i++){
     const newButt = document.createElement('BUTTON');

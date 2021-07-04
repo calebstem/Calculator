@@ -5,4 +5,32 @@
 
 body{
     background-color: palegoldenrod;
+    font-family: 'Orbitron', sans-serif;
+}
+
+.largeCont{
+    width: 219px;
+    height: 360px;
+    padding: 100px;
+    margin: 0 auto;
+    margin-top: 25px;
+    background-color:#e2e2e0;
+    border: 5px solid #353741;
+    border-radius: 5px;
+}
+
+.results{
+    padding: 15px;
+    margin-top: -80px;
+    height: 30px;
+    width: 200px;
+    background-color: #74d314;
+    font-size: 30px;
+    font-family: 'Orbitron', sans-serif;
+}
+
+.numButt{
+    font-size: 20px;
+    display: flex;
+    justify-content: space-around;
 }
